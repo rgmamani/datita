@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economía Argentina</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        header {
+            background: linear-gradient(135deg, #007bff, #6c63ff);
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 2rem 0;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        .data-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .data-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #6c63ff, #007bff);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="text-center">
+        <h1>Economía Argentina</h1>
+        <p>Datos clave que impactan en tu vida</p>
+    </header>
+    <main class="container my-5">
+        <div id="datos" class="row g-4">
+            <!-- Los datos se cargarán aquí -->
+        </div>
+    </main>
+    <footer class="text-center">
+        <p>Fuentes: INDEC, ANSES, Ministerio de Trabajo</p>
+        <p>&copy; 2024 Economía Argentina</p>
+    </footer>
+
+    <script>
+        async function cargarDatos()
+        {
+            try
+            {
+                const response = await fetch('/api/datos-economicos');
+                const data = await response.json();
+
+                const contenedor = document.getElementById('datos');
+                contenedor.innerHTML = `
+                    <div class="col-md-4">
+                        <div class="card data-card">
+                            <div class="card-header">Salario Mínimo</div>
+                            <div class="card-body">
+                                <p class="card-text">Valor actual: <strong>${data.salarioMinimo}</strong></p>
+                                <small class="text-muted">Actualizado: ${new Date(data.fechaActualizacion).toLocaleDateString()}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card data-card">
+                            <div class="card-header">Canasta Básica</div>
+                            <div class="card-body">
+                                <p class="card-text">Alimentaria: <strong>${data.canastaBasica.canastaAlimentaria}</strong></p>
+                                <p class="card-text">Total: <strong>${data.canastaBasica.canastaTotal}</strong></p>
+                                <small class="text-muted">Actualizado: ${new Date(data.fechaActualizacion).toLocaleDateString()}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card data-card">
+                            <div class="card-header">Jubilaciones</div>
+                            <div class="card-body">
+                                <p class="card-text">Haber mínimo: <strong>${data.jubilacion}</strong></p>
+                                <small class="text-muted">Actualizado: ${new Date(data.fechaActualizacion).toLocaleDateString()}</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } catch (error)
+            {
+                console.error('Error al cargar los datos:', error);
+            }
+        }
+
+        // Cargar los datos al inicio
+        window.onload = cargarDatos;
+    </script>
+</body>
+
+</html>
