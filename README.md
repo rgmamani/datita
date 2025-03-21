@@ -9,19 +9,18 @@ This project aims to consolidate and present essential economic indicators in a 
 ## Features (Planned/Current)
 
 * **Real-time/Up-to-date Economic Data:**
-    * Inflation rates (e.g., CPI).
-    * Exchange rates (USD/ARS, etc.).
-    * Interest rates.
-    * Unemployment rates.
-    * Other relevant economic indicators.
+    * Minimum wage.
+    * Cost of the basic basket.
+    * Minimum retirement.
 * **Clear and Concise Visualizations:**
-    * Graphs and charts to illustrate trends.
+    * Show the most important values.
     * Easy-to-understand data presentations.
 * **User-Friendly Interface:**
     * Simple and intuitive design.
     * Responsive across different devices.
 * **Data Sources:**
     * INDEC
+    * ANSES
     * BCRA
 
 ## Technologies Used
@@ -41,7 +40,7 @@ This project aims to consolidate and present essential economic indicators in a 
 1.  Clone the repository:
 
     ```bash
-    git clone [repository_url]
+    git clone git@github.com:rgmamani/datita.git
     cd datita
     ```
 
