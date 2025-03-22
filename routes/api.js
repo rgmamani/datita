@@ -5,10 +5,10 @@ var router = express.Router();
 async function obtenerDatosEconomicos() {
     try {
         // Simulación de scraping
-        const salarioMinimo = "286.711 ARS"; // Reemplaza con el resultado real del scraping
-        const canastaAlimentaria = "439.239,58 ARS"; // Reemplaza con el resultado real
-        const canastaTotal = "1.001.466 ARS"; // Reemplaza con el resultado real
-        const jubilacionMinima = "259.598,76 ARS"; // Reemplaza con el resultado real
+        let salarioMinimo = "286.711 ARS"; // Reemplaza con el resultado real
+        let canastaAlimentaria = "439.239,58 ARS"; // Reemplaza con el resultado real
+        let canastaTotal = "1.001.466 ARS"; // Reemplaza con el resultado real
+        let jubilacionMinima = "259.598,76 ARS"; // Reemplaza con el resultado real
 
         return {
             salarioMinimo,
