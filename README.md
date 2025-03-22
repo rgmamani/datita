@@ -57,7 +57,7 @@ This project aims to consolidate and present essential economic indicators in a 
 4.  Run the application:
 
     ```bash
-    npm start
+    DEBUG=datati:* npm start
     ```
 
 5.  Open your browser and navigate to `http://localhost:3000` (or the port specified in your configuration).
