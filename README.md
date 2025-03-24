@@ -64,9 +64,38 @@ This project aims to consolidate and present essential economic indicators in a 
 
 ## Development
 
-* Describe how to contribute to the project.
-* Explain the project's structure.
-* Mention any coding conventions.
+This section outlines the development setup and processes for this project.
+
+### Docker Setup
+
+For local development and testing, a Docker image can be built using the provided `docker-build.sh` script. This simplifies the process of creating a consistent environment for testing your Expressjs application.
+
+### Prerequisites
+
+* Docker installed on your system.
+
+### Building the Docker Image
+
+1.  Open a terminal in the project's root directory.
+2.  Execute the script:
+
+    ```bash
+    ./docker-build.sh
+    ```
+
+    This script will:
+
+    * Build a Docker image based on the `Dockerfile` in your project.
+    * Tag the image as `datita:version-commitID`.
+    * Tag the image as `datita:latest`.
+
+### Running the Docker Container
+
+After successfully building the image, you can run a Docker container to test your application:
+
+```bash
+docker run -p 3000:3000 datita:latest
+```
 
 ## Contributing
 
