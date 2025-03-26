@@ -1,0 +1,43 @@
+# Score provides a developer-centric and platform-agnostic 
+# Workload specification to improve developer productivity and experience. 
+# Score eliminates configuration management between local and remote environments.
+#
+# Specification reference: https://docs.score.dev/docs/reference/score-spec-reference/
+---
+# Score specification version
+apiVersion: score.dev/v1b1
+metadata:
+  name: datita
+  annotations:
+    datita.com.ar/project-name: datita
+containers:
+  web-server:
+    image: datita:latest
+    variables:
+      DEBUG: ${resources.env.DEBUG}
+    resources:
+      limits:
+        memory: 512M
+        cpu: 750m
+      requests:
+        memory: 128M
+        cpu: 125m
+    livenessProbe:
+      httpGet:
+        scheme: HTTP
+        path: /
+        port: 3000
+    readinessProbe:
+      httpGet:
+        scheme: HTTP
+        path: /
+        port: 3000
+service:
+  ports:
+    http:
+      port: 8080
+      protocol: TCP
+      targetPort: 3000
+resources:
+  env:
+    type: environment
