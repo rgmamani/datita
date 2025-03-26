@@ -70,14 +70,14 @@ This section outlines the development setup and processes for this project.
 
 For local development and testing, a Docker image can be built using the provided `docker-build.sh` script. This simplifies the process of creating a consistent environment for testing your Expressjs application.
 
-### Prerequisites
+#### Prerequisites
 
-* Docker installed on your system.
+* Docker installed on your OS. Check the instruction on [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/).
 
-### Building the Docker Image
+#### Building the Docker Image
 
-1.  Open a terminal in the project's root directory.
-2.  Execute the script:
+1. Open a terminal in the project's root directory.
+2. Execute the script:
 
     ```bash
     ./docker-build.sh
@@ -89,13 +89,70 @@ For local development and testing, a Docker image can be built using the provide
     * Tag the image as `datita:version-commitID`.
     * Tag the image as `datita:latest`.
 
-### Running the Docker Container
+3. After successfully building the image, you can run a Docker container to test your application:
 
-After successfully building the image, you can run a Docker container to test your application:
+    ```bash
+    docker run -p 3000:3000 datita:latest
+    ```
 
-```bash
-docker run -p 3000:3000 datita:latest
-```
+### Score Setup
+
+Score provides a developer-centric and platform-agnostic Workload specification to improve developer productivity and experience. Score eliminates configuration management between local and remote environments You can check the specification on [https://docs.score.dev/docs/reference/score-spec-reference/](https://docs.score.dev/docs/reference/score-spec-reference/).
+
+#### Prerequisites
+
+* Score Composite installed on your OS. Check the instruction on [https://docs.score.dev/docs/score-implementation/score-compose/installation/](https://docs.score.dev/docs/score-implementation/score-compose/installation/)
+* Score K8s installed on your OS. Check the instruction on [https://docs.score.dev/docs/score-implementation/score-k8s/installation/](https://docs.score.dev/docs/score-implementation/score-k8s/installation/)
+
+#### Building the Docker Compose
+
+1. Open a terminal in the project's root directory.
+2. Execute the following command:
+
+    ```bash
+    score-compose init
+    ```
+
+    The init subcommand will prepare the current directory for working with score-compose and prepare any local files or configuration needed to be successful.
+
+3. Execute the following command:
+
+    ```bash
+    score-compose generate score.yaml --publish 3000:datita:3000
+    ```
+
+    The generate command will convert Score files in the current Score compose project into a combined Docker compose manifest. All resources and links between Workloads will be resolved and provisioned as required.
+
+4. After successfully building the Docker compose manifest, you can run the Docker compose command to test your application:
+
+    ```bash
+    docker compose up -d
+    ```
+
+#### Building the K8s Deployment
+
+1. Open a terminal in the project's root directory.
+2. Execute the following command:
+
+    ```bash
+    score-k8s init --provisioners https://raw.githubusercontent.com/score-spec/community-provisioners/refs/heads/main/score-k8s/10-env.provisioners.yaml
+    ```
+
+    The init subcommand will prepare the current directory for working with score-k8s and prepare any local files or configuration needed to be successful. In this case also we are adding a new provisioner to manage the environment with *.env* files.
+
+3. Execute the following command:
+
+    ```bash
+    score-k8s generate score.yaml
+    ```
+
+    The generate command will convert Score files in the current Score compose project into a combined Docker compose manifest. All resources and links between Workloads will be resolved and provisioned as required.
+
+4. After successfully building the K8s Deployment manifest, you can apply the changes to your K8s Cluster to test your application:
+
+    ```bash
+    kubectl apply -f manifests.yaml
+    ```
 
 ## Contributing
 
