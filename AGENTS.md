@@ -20,7 +20,7 @@ npx vercel --prod --yes            # deploy manual a producción (repo ya vincul
 - El warning de build *"Internal rewrites in backend framework projects now route requests..."* es conocido y los endpoints funcionan — no "corregirlo" a ciegas.
 - `routes/index.js` (router `/`) es código muerto en local: `express.static` atiende `/` antes que el router. Existe como fallback `sendFile`.
 - **Frontend**: una sola página (`public/index.html`) con módulos ES nativos (sin bundler, todo por **CDN**): la entrada es `public/javascripts/app.js` (wiring DOM, eventos, `window.EconomicData`) que importa desde `public/javascripts/modules/` (`datos.js` = serie fallback + formatMoney, `kpis.js`, `tabla.js`, `grafico.js`). El `tailwind.config` inline en el HTML debe espejar `tailwind.config.js` — cambiar ambos. Módulos nuevos = `type="module"`; verificar con browser headless (`--dump-dom`) que se renderizan las 27 filas.
-- `docs/links-de-interes.md` es la lista de fuentes oficiales del proyecto (API de series, catalogo sspm, páginas de difusión).
+- `docs/links-de-interes.md` es la lista de fuentes oficiales del proyecto (API de series, catalogo sspm, páginas de difusión). `docs/backlog.md` mantiene las tareas pendientes de cada sesión — mantenerlo al día.
 
 ## Datos (API oficial datos.gob.ar)
 
