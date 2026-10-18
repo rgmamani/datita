@@ -221,3 +221,5 @@ manifests.yaml
 
 # Custom
 datosEconomicos.json
+.vercel
+.env*
