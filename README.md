@@ -73,4 +73,4 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 
 ## License
 
-(Add a license, e.g., MIT)
+Distributed under the MIT License. See `LICENSE` for details.
