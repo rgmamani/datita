@@ -51,7 +51,7 @@ export function setKpisCargando(estado) {
   });
 }
 
-// Renderiza los KPIs del panel superior (4 valores + año) con el primer y último registro de la serie
+// Renderiza los KPIs del panel superior (5 tarjetas: 4 valores + año + haber) con el primer y último registro de la serie
 export function renderKPIs() {
   if (economicData.length === 0) return;
 
