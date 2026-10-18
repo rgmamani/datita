@@ -6,19 +6,21 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 
 (nada — todo lo confirmado está resuelto)
 
-## Ideas (pendiente de confirmación)
+## Ideas (con prioridad propuesta — 18/10/2026)
 
-- [ ] **Contador de visitas + fecha del último dato** — soporte para mostrar "último dato publicado" y visitas diarias; dependiente de backend propio o Vercel Analytics.
-- [ ] **Vercel Web Analytics** — el proyecto ya lo trae habilitado por Vercel por defecto (ver webAnalytics en settings); decidir si sumarlo a la UI del footer.
-- [ ] **PoC con LLM por indicador** (GitHub #5, #6, #7) — ideas exploratorias de la sesión semilla (marzo 2025); se mantienen abiertas como roadmap, ninguna iniciada.
-- [ ] **Autoría en el footer** (propuesta del dueño, 18/10) — agregar en el footer un enlace a la página personal http://rgmamani.github.io/ ("¿quién es el autor?"); definir texto discreto y ubicación junto a la línea de versión.
-- [ ] **Responsive de la página** (propuesta del dueño, 18/10) — revisar y ajustar el layout para mobile/tablet: KPIs, gráfico, tarjetas de periodos y tabla (scroll horizontal). Solapa parcialmente con el feature de jubilación (grid de 5).
-- [ ] **Revisar cards de periodos bajo el gráfico** (observación del dueño, 18/10) — falta el periodo 2012–2017 y la card 03 ("2018 - 2024: Aceleración Inflacionaria") llega hasta 2024; debería llegar hasta 2026 (los datos ya vienen en vivo hasta presente). Repensar corte de periodos/cobertura narrativa al agregar jubilación.
-- [ ] **Reglas de protección de branch/releases en GitHub** (GitHub #10, label `operation`) — pendiente de decisión del dueño del repo.
+Criterio: inconsistencia visible hoy > valor para el visitante > costo de implementación. El orden es una sugerencia del asistente; el dueño puede mover cosas libremente.
+
+- [ ] **[P1] Revisar cards de periodos bajo el gráfico** (observación del dueño, 18/10) — falta el periodo 2012–2017 y la card 03 ("2018 - 2024: Aceleración Inflacionaria") llega hasta 2024; debería llegar hasta 2026 (los datos ya vienen en vivo hasta presente). Aprovechar para incorporar la narrativa del haber jubilatorio (línea nueva del gráfico). Costo: bajo (contenido estático).
+- [ ] **[P2] Responsive de la página** (propuesta del dueño, 18/10) — revisar y ajustar el layout para mobile/tablet: KPIs (el grid de 5 queda apretado en mobile), gráfico, tarjetas de periodos y tabla (scroll horizontal). Costo: medio.
+- [ ] **[P3] Autoría en el footer** (propuesta del dueño, 18/10) — agregar en el footer un enlace a la página personal http://rgmamani.github.io/ ("¿quién es el autor?"); definir texto discreto y ubicación junto a la línea de versión. Costo: bajo.
+- [ ] **[P4] Reglas de protección de branch/releases en GitHub** (GitHub #10, label `operation`) — baja urgencia: el flujo feature branch + PR ya funciona por convención, pero es la única traba real contra pusheos accidentales a `main` (deploy automático a producción). Costo: muy bajo (config de GitHub).
+- [ ] **[P5] Contador de visitas + fecha del último dato** — soporte para mostrar "último dato publicado" y visitas diarias; dependiente de backend propio o Vercel Analytics. Requiere decisión técnica antes. Costo: medio-alto.
+- [ ] **[P6] Vercel Web Analytics** — el proyecto ya lo trae habilitado por Vercel por defecto (ver webAnalytics en settings); decidir si sumarlo a la UI del footer. Va junto con P5 (misma área del footer).
+- [ ] **[P7] PoC con LLM por indicador** (GitHub #5, #6, #7) — ideas exploratorias de la sesión semilla (marzo 2025) sin adopción desde entonces. Candidatas a cerrar/archivar si no hay ganas de explorar (costo alto, valor incierto).
 
 ## Resueltos (referencia rápida)
 
-- [x] **Jubilación en la UI (18/10, PR #15)** — haber mínimo ANSES en todo el dashboard (v2.1.0): datos curados 2000–2024 (`data/serie-historica.json` + fallback `datos.js`, script `scripts/generar-serie-jubilacion.mjs`), extensión en vivo 2025+ en `/api/serie-historica`, KPI 5 con skeleton/fade, 3ra línea/valor y línea punteada de cobertura en el gráfico, columna en la tabla. E2E en local y producción (27 registros, jubilación sep 2026 = $428.633) OK. Pulido post-review → PR #16.
+- [x] **Jubilación en la UI (18/10, PR #15)** — haber mínimo ANSES en todo el dashboard (v2.1.0): datos curados 2000–2024 (`data/serie-historica.json` + fallback `datos.js`, script `scripts/generar-serie-jubilacion.mjs`), extensión en vivo 2025+ en `/api/serie-historica`, KPI 5 con skeleton/fade, 3ra línea/valor y línea punteada de cobertura en el gráfico, columna en la tabla. E2E en local y producción (27 registros, jubilación sep 2026 = $428.633) OK. Pulido post-review mergeado en **PR #16** (guard de `d.cbt` en cobertura jubilatoria + comentario de KPIs).
 
 - [x] **Decisión Docker/Score (18/10)** — se eliminaron `Dockerfile`, `docker-build.sh`, `score.yaml` y `.dockerignore` + referencias en README, AGENTS.md y `.gitignore`. El deploy real es Vercel (push a main) y el local es `npm start`.
 
