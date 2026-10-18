@@ -214,12 +214,8 @@ Temporary Items
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-.score-compose
-.score-k8s
-compose.yaml
-manifests.yaml
-
 # Custom
+.superpowers/
 datosEconomicos.json
 .vercel
 .env*
