@@ -11,6 +11,9 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 
 - [ ] **Contador de visitas + fecha del último dato** — soporte para mostrar "último dato publicado" y visitas diarias; dependiente de backend propio o Vercel Analytics.
 - [ ] **Vercel Web Analytics** — el proyecto ya lo trae habilitado por Vercel por defecto (ver webAnalytics en settings); decidir si sumarlo a la UI del footer.
+- [ ] **Visualización del haber mínimo jubilatorio en la UI** — la serie ANSES (`58.1_MP_0_M_13` vía datos.gob.ar) ya se consume en `/api/datos-economicos` pero no se muestra en el dashboard.
+- [ ] **PoC con LLM por indicador** (GitHub #5, #6, #7) — ideas exploratorias de la sesión semilla (marzo 2025); se mantienen abiertas como roadmap, ninguna iniciada.
+- [ ] **Reglas de protección de branch/releases en GitHub** (GitHub #10, label `operation`) — pendiente de decisión del dueño del repo.
 
 ## Resueltos (referencia rápida)
 
