@@ -27,6 +27,7 @@ This project aims to consolidate and present essential economic indicators in a 
 
 * **Node.js:** Runtime environment.
 * **Express.js:** Web application framework.
+* **Frontend:** Vanilla ES modules + Tailwind CSS / Chart.js (CDN, sin build step).
 
 ## Getting Started
 
@@ -50,17 +51,15 @@ This project aims to consolidate and present essential economic indicators in a 
     npm install
     ```
 
-3.  Configure environment variables:
-    * Create a `.env` file based on the `.env.example` file (if provided).
-    * Set the necessary environment variables (e.g., API keys, database connection strings).
-
-4.  Run the application:
+3.  Run the application:
 
     ```bash
-    DEBUG=datati:* npm start
+    npm start
     ```
 
-5.  Open your browser and navigate to `http://localhost:3000` (or the port specified in your configuration).
+    No environment variables or secrets are needed — the app consumes the public datos.gob.ar API anonymously and is 100% public.
+
+4.  Open your browser and navigate to `http://localhost:3000`.
 
 ## Development
 

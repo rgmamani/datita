@@ -28,11 +28,13 @@ npx vercel --prod --yes            # deploy manual a producción (repo ya vincul
 - La API devuelve meses futuros calendarizados: **filtrar `fecha <= hoy`** (ya lo hace `fetchSerieCompleta`).
 - Caché TTL de 1 hora con node-cache; al probar cambios de datos no verás valores frescos — reiniciar o esperar. En serverless el caché es por instancia (se reinicia más seguido).
 - `data/serie-historica.json` es la base curada 2000–2024; el endpoint extendido agrega los años recientes con valores en vivo de la API. Valores históricos corregidos a mano: tocar con cuidado (ej. SMVM 2013 = 3300).
+- `scripts/generar-serie-jubilacion.mjs` es el script one-off que curó la serie de jubilación (valor de diciembre por año, 2000–2024) en el JSON y regenera el fallback `datos.js`. Es idempotente, pero si se vuelve a correr **sobrescribe los valores de `jubilacion`** con lo que traiga la API (correcciones manuales a la jubilación se perderían; los de SMVM/CBT se preservan).
 - `/api/version` lee `package.json` al cargar el módulo + constante hardcoded `FECHA_ACTUALIZACION_APP` en `routes/api.js`: al bump de versión, actualizar **ambos**.
 
 ## Deploy Vercel
 
 - Repo vinculado a GitHub (`rgmamani/datita`): **cada push a `main` despliega automático** a https://datita-app.vercel.app (proyecto `datita-app`, team `rgmamanis-projects`). La configuración de deploy vive en `vercel.json`.
+- ⚠️ **Caché de edge al verificar deploys**: después de que un deploy queda READY, `curl` a `datita-app.vercel.app` puede seguir sirviendo el HTML viejo por caché de edge en el POP local (visto con PR #19: el dueño veía el contenido nuevo en su navegador y `curl` el viejo, incluso con query string). Para verificar contenido: abrir en navegador o comparar contra el hostname del deployment; los checks de código de estado (`/` 200, `/api/version`) siguen siendo fiables.
 
 ## Flujo de trabajo (feature branch + PR)
 

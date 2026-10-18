@@ -10,13 +10,14 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 
 Criterio: inconsistencia visible hoy > valor para el visitante > costo de implementación. El orden es una sugerencia del asistente; el dueño puede mover cosas libremente.
 
-- [ ] **[P3] Autoría en el footer** (propuesta del dueño, 18/10) — **PR #19 abierto, queda pendiente tu merge**: "Visualización interactiva por Gabriel Mamani" con enlace a http://rgmamani.github.io/ en la primera línea del footer (estilo discreto, hover brand-blue). Costo: bajo.
 - [ ] **[P4] Reglas de protección de branch/releases en GitHub** (GitHub #10, label `operation`) — baja urgencia: el flujo feature branch + PR ya funciona por convención, pero es la única traba real contra pusheos accidentales a `main` (deploy automático a producción). Costo: muy bajo (config de GitHub).
 - [ ] **[P5] Contador de visitas + fecha del último dato** — soporte para mostrar "último dato publicado" y visitas diarias; dependiente de backend propio o Vercel Analytics. Requiere decisión técnica antes. Costo: medio-alto.
 - [ ] **[P6] Vercel Web Analytics** — el proyecto ya lo trae habilitado por Vercel por defecto (ver webAnalytics en settings); decidir si sumarlo a la UI del footer. Va junto con P5 (misma área del footer).
 - [ ] **[P7] PoC con LLM por indicador** (GitHub #5, #6, #7) — ideas exploratorias de la sesión semilla (marzo 2025) sin adopción desde entonces. Candidatas a cerrar/archivar si no hay ganas de explorar (costo alto, valor incierto).
 
 ## Resueltos (referencia rápida)
+
+- [x] **Autoría en el footer (18/10, PR #19)** — "Visualización interactiva por Gabriel Mamani" con enlace a http://rgmamani.github.io/ en la primera línea del footer (estilo discreto, hover brand-blue).
 
 - [x] **Responsive (18/10, PR #18)** — auditoría en 390 / 768 / 1440: la base ya era responsiva; se corrigió el KPI 5 en tablet (`sm:col-span-2` → filas 2+2+2) y las cards de periodos van 2×2 desde 640px (`sm:grid-cols-2`).
 
