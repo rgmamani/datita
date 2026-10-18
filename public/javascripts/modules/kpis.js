@@ -1,28 +1,33 @@
 import { economicData, formatMoney } from './datos.js';
 
-// Estado de carga de los KPIs: true = skeletons visibles y valores ocultos.
 // El HTML inicial ya llega en estado de carga (valores con opacity-0, skeletons con animate-pulse).
-let cargando = true;
+
+// Timer pendiente por elemento: un swap no puede ser pisado por el fade anterior
+const timersFades = new WeakMap();
 
 // Escribe html en el elemento. Si el valor está oculto (cargando) solo escribe: lo revela
 // el fade de setKpisCargando(false). Si está visible, escribe con fade y solo si cambió.
 function escribirConFade(el, html) {
+  clearTimeout(timersFades.get(el));
+  timersFades.delete(el);
   if (el.classList.contains('opacity-0')) {
     el.innerHTML = html;
     return;
   }
   if (el.innerHTML === html) return;
   el.classList.add('opacity-0');
-  setTimeout(() => {
+  el.classList.remove('opacity-100');
+  timersFades.set(el, setTimeout(() => {
     el.innerHTML = html;
     el.classList.remove('opacity-0');
-  }, 150);
+    el.classList.add('opacity-100');
+    timersFades.delete(el);
+  }, 150));
 }
 
 // Muestra u oculta los skeletons de los KPIs. El fade lo hace el CSS
 // (transition-opacity duration-300 en cada elemento).
 export function setKpisCargando(estado) {
-  cargando = estado;
   document.querySelectorAll('.kpi-valor').forEach(el => {
     el.classList.toggle('opacity-100', !estado);
     el.classList.toggle('opacity-0', estado);
@@ -34,7 +39,7 @@ export function setKpisCargando(estado) {
   });
 }
 
-// Renderiza los 4 KPIs del panel superior con el primer y último registro de la serie
+// Renderiza los 5 elementos KPI del panel superior (4 valores + año) con el primer y último registro de la serie
 export function renderKPIs() {
   if (economicData.length === 0) return;
 
