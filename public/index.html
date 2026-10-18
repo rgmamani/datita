@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es" class="h-full bg-slate-900 text-slate-100">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evolución Salario Mínimo vs Canasta Básica Argentina (2000-2024)</title>
+    <title>Datita - Evolución Salario Mínimo vs Canasta Básica Argentina</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js CDN -->
@@ -11,7 +12,8 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -33,21 +35,24 @@
         }
     </script>
 </head>
+
 <body class="h-full flex flex-col font-sans antialiased selection:bg-brand-blue selection:text-white">
 
     <!-- Navigation / Header -->
     <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="p-2 bg-gradient-to-tr from-blue-600 to-cyan-500 rounded-xl text-white shadow-lg shadow-blue-500/20">
+                <div
+                    class="p-2 bg-gradient-to-tr from-blue-600 to-cyan-500 rounded-xl text-white shadow-lg shadow-blue-500/20">
                     <i class="fa-solid me-0 fa-chart-line text-lg"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-lg text-white leading-none">Economía Argentina</h1>
-                    <p class="text-xs text-slate-400 mt-0.5">Evolución Histórica (2000 - 2024)</p>
+                    <h1 class="font-bold text-lg text-white leading-none">DATITA - Economía Argentina</h1>
+                    <p class="text-xs text-slate-400 mt-0.5">Evolución Histórica (2000 - presente)</p>
                 </div>
             </div>
-            <div class="flex items-center gap-2 text-xs font-medium text-slate-400 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
+            <div
+                class="flex items-center gap-2 text-xs font-medium text-slate-400 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
                 <i class="fa-solid fa-database text-brand-blue"></i>
                 <span>Fuente: INDEC / ANSES / datos.gob.ar</span>
             </div>
@@ -60,20 +65,25 @@
         <!-- Top Stats / Key Highlights -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <!-- Stat 1 -->
-            <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 hover:border-slate-600 transition-all">
-                <div class="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
+            <div
+                class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 hover:border-slate-600 transition-all">
+                <div
+                    class="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
                     <span>SMVM Inicial (2000)</span>
                     <i class="fa-solid fa-dollar-sign text-blue-400"></i>
                 </div>
-                <div class="text-2xl font-bold text-white" id="kpi-smvm-inicial">$200 <span class="text-xs text-slate-400 font-normal">ARS</span></div>
+                <div class="text-2xl font-bold text-white" id="kpi-smvm-inicial">$200 <span
+                        class="text-xs text-slate-400 font-normal">ARS</span></div>
                 <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
                     <span class="text-emerald-400 font-medium">1 a 1</span> durante la convertibilidad
                 </p>
             </div>
 
             <!-- Stat 2 -->
-            <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 hover:border-slate-600 transition-all">
-                <div class="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
+            <div
+                class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 hover:border-slate-600 transition-all">
+                <div
+                    class="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
                     <span>SMVM Último Año</span>
                     <i class="fa-solid fa-wallet text-emerald-400"></i>
                 </div>
@@ -82,8 +92,10 @@
             </div>
 
             <!-- Stat 3 -->
-            <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 hover:border-slate-600 transition-all">
-                <div class="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
+            <div
+                class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 hover:border-slate-600 transition-all">
+                <div
+                    class="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
                     <span>CBT Último Año</span>
                     <i class="fa-solid fa-basket-shopping text-rose-400"></i>
                 </div>
@@ -92,8 +104,10 @@
             </div>
 
             <!-- Stat 4 -->
-            <div class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 hover:border-slate-600 transition-all">
-                <div class="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
+            <div
+                class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 hover:border-slate-600 transition-all">
+                <div
+                    class="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
                     <span>Cobertura Colectiva</span>
                     <i class="fa-solid fa-scale-unbalanced text-amber-400"></i>
                 </div>
@@ -108,25 +122,31 @@
                 <div>
                     <h2 class="text-xl font-bold text-white flex items-center gap-2">
                         <span>Comparativa Evolutiva</span>
-                        <span id="chartTypeBadge" class="text-xs font-normal bg-brand-blue/20 text-brand-blue px-2.5 py-0.5 rounded-full border border-brand-blue/30">Valores Nominales</span>
+                        <span id="chartTypeBadge"
+                            class="text-xs font-normal bg-brand-blue/20 text-brand-blue px-2.5 py-0.5 rounded-full border border-brand-blue/30">Valores
+                            Nominales</span>
                     </h2>
-                    <p class="text-slate-400 text-xs mt-1">Sueldo Mínimo, Vital y Móvil vs. Canasta Básica Total (Hogar Tipo 2 - 4 personas)</p>
+                    <p class="text-slate-400 text-xs mt-1">Sueldo Mínimo, Vital y Móvil vs. Canasta Básica Total (Hogar
+                        Tipo 2 - 4 personas)</p>
                 </div>
 
                 <!-- Controls -->
                 <div class="flex flex-wrap items-center gap-2">
                     <!-- Scale Toggle Button -->
-                    <button id="btnLogScale" class="px-3 py-1.5 bg-slate-700/60 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-medium transition flex items-center gap-2 border border-slate-600">
+                    <button id="btnLogScale"
+                        class="px-3 py-1.5 bg-slate-700/60 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-medium transition flex items-center gap-2 border border-slate-600">
                         <i class="fa-solid fa-arrows-up-down"></i>
                         <span>Escala Logarítmica</span>
                     </button>
 
                     <!-- Chart Mode Selector -->
                     <div class="inline-flex p-1 bg-slate-900/80 rounded-lg border border-slate-700">
-                        <button id="btnModeValues" class="px-3 py-1 rounded-md text-xs font-medium bg-brand-blue text-white shadow transition">
+                        <button id="btnModeValues"
+                            class="px-3 py-1 rounded-md text-xs font-medium bg-brand-blue text-white shadow transition">
                             Valores ($)
                         </button>
-                        <button id="btnModeCoverage" class="px-3 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition">
+                        <button id="btnModeCoverage"
+                            class="px-3 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition">
                             Cobertura (%)
                         </button>
                     </div>
@@ -139,10 +159,14 @@
             </div>
 
             <!-- Chart Notes -->
-            <div class="mt-4 pt-4 border-t border-slate-700/50 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
+            <div
+                class="mt-4 pt-4 border-t border-slate-700/50 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
                 <div class="flex items-center gap-4">
-                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-500 inline-block"></span> SMVM (Sueldo Mínimo)</span>
-                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span> CBT (Canasta Básica Total)</span>
+                    <span class="flex items-center gap-1.5"><span
+                            class="w-3 h-3 rounded-full bg-blue-500 inline-block"></span> SMVM (Sueldo Mínimo)</span>
+                    <span class="flex items-center gap-1.5"><span
+                            class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span> CBT (Canasta Básica
+                        Total)</span>
                 </div>
                 <span>* Datos a Diciembre de cada año representativo.</span>
             </div>
@@ -152,55 +176,67 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Card 1 -->
             <div class="bg-slate-800/30 border border-slate-700/50 rounded-xl p-5 hover:border-slate-600 transition">
-                <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold mb-3 border border-blue-500/20">
+                <div
+                    class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center font-bold mb-3 border border-blue-500/20">
                     01
                 </div>
                 <h3 class="font-semibold text-white text-base mb-1">2000 - 2002: Fin de la Convertibilidad</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">
-                    Durante el final del "1 a 1", el SMVM se mantuvo congelado en $200. Tras la salida de la convertibilidad en 2002, la Canasta Básica aumentó por la devaluación inicial mientras el salario ajustaba con rezago.
+                    Durante el final del "1 a 1", el SMVM se mantuvo congelado en $200. Tras la salida de la
+                    convertibilidad en 2002, la Canasta Básica aumentó por la devaluación inicial mientras el salario
+                    ajustaba con rezago.
                 </p>
             </div>
 
             <!-- Card 2 -->
             <div class="bg-slate-800/30 border border-slate-700/50 rounded-xl p-5 hover:border-slate-600 transition">
-                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold mb-3 border border-emerald-500/20">
+                <div
+                    class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold mb-3 border border-emerald-500/20">
                     02
                 </div>
                 <h3 class="font-semibold text-white text-base mb-1">2003 - 2011: Recomposición Salarial</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">
-                    Reactivación del Consejo del Salario Mínimo. Durante este período el valor nominal del SMVM creció sustainedly, superando individualmente el valor total de una CBT para un hogar de 4 personas.
+                    Reactivación del Consejo del Salario Mínimo. Durante este período el valor nominal del SMVM creció
+                    sostenidamente, superando individualmente el valor total de una CBT para un hogar de 4 personas.
                 </p>
             </div>
 
             <!-- Card 3 -->
             <div class="bg-slate-800/30 border border-slate-700/50 rounded-xl p-5 hover:border-slate-600 transition">
-                <div class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center font-bold mb-3 border border-rose-500/20">
+                <div
+                    class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center font-bold mb-3 border border-rose-500/20">
                     03
                 </div>
                 <h3 class="font-semibold text-white text-base mb-1">2018 - 2024: Aceleración Inflacionaria</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">
-                    Marcado deterioro del poder adquisitivo. La Canasta Básica experimentó incrementos a mayor velocidad que el Salario Mínimo, reduciendo su cobertura al ~27% de una CBT familiar.
+                    Marcado deterioro del poder adquisitivo. La Canasta Básica experimentó incrementos a mayor velocidad
+                    que el Salario Mínimo, reduciendo su cobertura al ~27% de una CBT familiar.
                 </p>
             </div>
         </div>
 
         <!-- Data Table Section -->
         <div class="bg-slate-800/40 border border-slate-700/60 rounded-2xl overflow-hidden shadow-xl">
-            <div class="p-5 border-b border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div
+                class="p-5 border-b border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                     <h3 class="text-lg font-bold text-white">Tabla Detallada por Año</h3>
-                    <p class="text-xs text-slate-400">Valores en pesos argentinos (ARS) a diciembre de cada año y porcentaje de cobertura.</p>
+                    <p class="text-xs text-slate-400">Valores en pesos argentinos (ARS) a diciembre de cada año y
+                        porcentaje de cobertura.</p>
                 </div>
                 <!-- Search / Filter Input -->
                 <div class="relative w-full sm:w-64">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar año o detalle..." class="w-full bg-slate-900/80 border border-slate-700 rounded-lg pl-8 pr-4 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-blue">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar año o detalle..."
+                        class="w-full bg-slate-900/80 border border-slate-700 rounded-lg pl-8 pr-4 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-blue">
                 </div>
             </div>
 
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs text-slate-300">
-                    <thead class="bg-slate-900/60 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-700/60">
+                    <thead
+                        class="bg-slate-900/60 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-700/60">
                         <tr>
                             <th class="py-3 px-4">Año</th>
                             <th class="py-3 px-4">Salario Mínimo (SMVM)</th>
@@ -222,7 +258,8 @@
     <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 space-y-1">
             <div>
-                Visualización interactiva desarrollada con Chart.js y Tailwind CSS &bull; Datos históricos de referencia (2000 - 2024).
+                Visualización interactiva desarrollada con Chart.js y Tailwind CSS &bull; Datos históricos (2000 -
+                2024) y datos en vivo de datos.gob.ar (2025 - presente).
             </div>
             <div id="footer-version" class="text-slate-600">
                 <span class="font-semibold text-slate-500">v-</span> &bull; Actualizado: -
@@ -233,4 +270,5 @@
     <!-- App JavaScript -->
     <script src="./javascripts/app.js"></script>
 </body>
+
 </html>
