@@ -19,7 +19,7 @@ npx vercel --prod --yes            # deploy manual a producción (repo ya vincul
 - **`public/` + rewrites**: en Vercel los archivos de `public/` se sirven estáticos y ganan sobre los rewrites de `vercel.json`; todo lo demás va a la función `/api`. No cambiar este patrón sin entender el orden filesystem → rewrite.
 - El warning de build *"Internal rewrites in backend framework projects now route requests..."* es conocido y los endpoints funcionan — no "corregirlo" a ciegas.
 - `routes/index.js` (router `/`) es código muerto en local: `express.static` atiende `/` antes que el router. Existe como fallback `sendFile`.
-- **Frontend**: una sola página (`public/index.html`) + un solo script (`public/javascripts/app.js`, expone `window.EconomicData`). Tailwind, Chart.js y FontAwesome por **CDN** (no node_modules): el `tailwind.config` inline en el HTML debe espejar `tailwind.config.js` — cambiar ambos.
+- **Frontend**: una sola página (`public/index.html`) con módulos ES nativos (sin bundler, todo por **CDN**): la entrada es `public/javascripts/app.js` (wiring DOM, eventos, `window.EconomicData`) que importa desde `public/javascripts/modules/` (`datos.js` = serie fallback + formatMoney, `kpis.js`, `tabla.js`, `grafico.js`). El `tailwind.config` inline en el HTML debe espejar `tailwind.config.js` — cambiar ambos. Módulos nuevos = `type="module"`; verificar con browser headless (`--dump-dom`) que se renderizan las 27 filas.
 - `docs/*.md` son notas de referencia (valores desactualizados), no especificación de la app.
 
 ## Datos (API oficial datos.gob.ar)
