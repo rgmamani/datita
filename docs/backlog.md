@@ -14,7 +14,7 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 
 ## Resueltos (referencia rápida)
 
-- [x] Pulido de UI: KPIs — skeleton loaders hasta llegar datos en vivo + fade en actualización (v2.0.0)
+- [x] Pulido de UI: KPIs + UX — skeleton loaders hasta llegar datos en vivo + fade en actualización (v2.0.0)
 - [x] Dashboard v2 con datos oficiales en vivo (v2.0.0) — ✅ desplega en Vercel: https://datita-app.vercel.app
 - [x] Modularización del frontend en módulos ES (`public/javascripts/modules/`)
 - [x] Corrección de author de commits para deploy de Vercel (git config local)
