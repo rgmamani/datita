@@ -14,6 +14,7 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 - [ ] **PoC con LLM por indicador** (GitHub #5, #6, #7) — ideas exploratorias de la sesión semilla (marzo 2025); se mantienen abiertas como roadmap, ninguna iniciada.
 - [ ] **Autoría en el footer** (propuesta del dueño, 18/10) — agregar en el footer un enlace a la página personal http://rgmamani.github.io/ ("¿quién es el autor?"); definir texto discreto y ubicación junto a la línea de versión.
 - [ ] **Responsive de la página** (propuesta del dueño, 18/10) — revisar y ajustar el layout para mobile/tablet: KPIs, gráfico, tarjetas de periodos y tabla (scroll horizontal). Solapa parcialmente con el feature de jubilación (grid de 5).
+- [ ] **Revisar cards de periodos bajo el gráfico** (observación del dueño, 18/10) — falta el periodo 2012–2017 y la card 03 ("2018 - 2024: Aceleración Inflacionaria") llega hasta 2024; debería llegar hasta 2026 (los datos ya vienen en vivo hasta presente). Repensar corte de periodos/cobertura narrativa al agregar jubilación.
 - [ ] **Reglas de protección de branch/releases en GitHub** (GitHub #10, label `operation`) — pendiente de decisión del dueño del repo.
 
 ## Resueltos (referencia rápida)
