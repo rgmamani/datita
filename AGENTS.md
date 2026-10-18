@@ -1,0 +1,42 @@
+# AGENTS.md — Datita
+
+Dashboard de indicadores económicos argentinos (SMVM vs CBT/CBA, haberes jubilatorios). Express + frontend vanilla sin build step, desplegado en Vercel. Responder y commitear en español.
+
+## Comandos
+
+```bash
+npm start                          # node ./bin/www → http://localhost:3000
+npx vercel --prod --yes            # deploy manual a producción (repo ya vinculado a Vercel)
+./docker-build.sh && docker run -p 3000:3000 datita:latest   # build/run Docker (node:22-alpine)
+```
+
+- No existen scripts de test, lint ni typecheck. Verificar cambios pidiendo a los endpoints: `/` (200), `/api/version`, `/api/serie-historica` (27 registros), `/api/datos-economicos`.
+- Requiere Node >= 22 (se usa `fetch` global). PowerShell en dev local: no hay binarios Unix.
+
+## Arquitectura (no obvia por los nombres)
+
+- **Doble entrada**: `bin/www` corre el server local; `api/index.js` es la entrada serverless de Vercel y solo exporta la app Express de `app.js` (raíz).
+- **`public/` + rewrites**: en Vercel los archivos de `public/` se sirven estáticos y ganan sobre los rewrites de `vercel.json`; todo lo demás va a la función `/api`. No cambiar este patrón sin entender el orden filesystem → rewrite.
+- El warning de build *"Internal rewrites in backend framework projects now route requests..."* es conocido y los endpoints funcionan — no "corregirlo" a ciegas.
+- `routes/index.js` (router `/`) es código muerto en local: `express.static` atiende `/` antes que el router. Existe como fallback `sendFile`.
+- **Frontend**: una sola página (`public/index.html`) + un solo script (`public/javascripts/app.js`, expone `window.EconomicData`). Tailwind, Chart.js y FontAwesome por **CDN** (no node_modules): el `tailwind.config` inline en el HTML debe espejar `tailwind.config.js` — cambiar ambos.
+- `docs/*.md` son notas de referencia (valores desactualizados), no especificación de la app.
+
+## Datos (API oficial datos.gob.ar)
+
+- Fuente: `https://apis.datos.gob.ar/series/api/series/` (IDs de series en `SERIES_IDS`, en `routes/api.js`).
+- **Consultar cada serie por separado** con `start_date`: las queries combinadas de varios IDs son poco fiables.
+- La API devuelve meses futuros calendarizados: **filtrar `fecha <= hoy`** (ya lo hace `fetchSerieCompleta`).
+- Caché TTL de 1 hora con node-cache; al probar cambios de datos no verás valores frescos — reiniciar o esperar. En serverless el caché es por instancia (se reinicia más seguido).
+- `data/serie-historica.json` es la base curada 2000–2024; el endpoint extendido agrega los años recientes con valores en vivo de la API. Valores históricos corregidos a mano: tocar con cuidado (ej. SMVM 2013 = 3300).
+- `/api/version` lee `package.json` al cargar el módulo + constante hardcoded `FECHA_ACTUALIZACION_APP` en `routes/api.js`: al bump de versión, actualizar **ambos**.
+
+## Deploy Vercel
+
+- Repo vinculado a GitHub (`rgmamani/datita`): **cada push a `main` despliega automático** a https://datita-app.vercel.app (proyecto `datita-app`, team `rgmamanis-projects`). La configuración de deploy vive en `vercel.json`.
+- Sitio 100% público (deployment protection desactivada); la app no tiene secretos ni variables de entorno — mantenerlo así.
+
+## Convenciones
+
+- Commits en español con prefijo convencional (`feat|fix|chore|refactor|docs`), atómicos estilo tren (cada cambio su commit).
+- Todo el contenido visible (UI, notes, footer) está en español con formato de moneda `es-AR`.
