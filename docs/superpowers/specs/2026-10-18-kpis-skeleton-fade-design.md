@@ -101,6 +101,8 @@ carga, no se ven; `renderKPIs()` los reemplaza con datos reales.
 - Fetch falla → estado "listo" seguro: skeleton fuera, fallback visible.
 - API sin registros (`data.length === 0`) → mismo camino que el error (ready + fallback).
 
+> Nota de implementación (decisión 2026-10-18): si una segunda llamada a `refreshData` recibe una respuesta vacía o falla tras un render exitoso previo, los KPIs muestran los últimos datos en vivo (stale) en lugar del fallback de `datos.js` — `economicData` es el array vivo mutado en sitio y hoy no hay mecanismo de restauración de la serie base. Aceptado porque `refreshData` solo se invoca desde `DOMContentLoaded`; si se agrega auto-refresh, guardar primero una copia inmutable de la serie fallback.
+
 ## Pruebas
 
 No hay suite de tests en el proyecto. Verificación manual:
