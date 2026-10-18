@@ -1,6 +1,6 @@
 // Entrada de la app: carga módulos, conecta eventos y sandbox de datos
 import { economicData, formatMoney } from './modules/datos.js';
-import { renderKPIs } from './modules/kpis.js';
+import { renderKPIs, setKpisCargando } from './modules/kpis.js';
 import { renderTable } from './modules/tabla.js';
 import { initChart, rebuildChart, setMode, toggleLogScale } from './modules/grafico.js';
 
@@ -86,9 +86,16 @@ const EconomicData = {
         renderKPIs();
         renderTable();
         rebuildChart();
+        // Revelar los valores en vivo con fade
+        setKpisCargando(false);
+      } else {
+        // Sin datos: revelar el fallback
+        setKpisCargando(false);
       }
     } catch (error) {
       console.error('Error refreshing data from API:', error);
+      // Error: revelar el fallback de datos.js
+      setKpisCargando(false);
     }
   }
 };
