@@ -7,7 +7,6 @@ Dashboard de indicadores económicos argentinos (SMVM vs CBT/CBA, haberes jubila
 ```bash
 npm start                          # node ./bin/www → http://localhost:3000
 npx vercel --prod --yes            # deploy manual a producción (repo ya vinculado a Vercel)
-./docker-build.sh && docker run -p 3000:3000 datita:latest   # build/run Docker (node:22-alpine)
 ```
 
 - No existen scripts de test, lint ni typecheck. Verificar cambios pidiendo a los endpoints: `/` (200), `/api/version`, `/api/serie-historica` (27 registros), `/api/datos-economicos`.
