@@ -63,7 +63,7 @@
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
         <!-- Top Stats / Key Highlights -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             <!-- Stat 1 -->
             <div
                 class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 hover:border-slate-600 transition-all">
@@ -142,6 +142,26 @@
                     </div>
                 </div>
                 <p class="text-xs text-slate-400 mt-2">% de CBT cubierta con 1 SMVM en último año</p>
+            </div>
+
+            <!-- Stat 5 -->
+            <div
+                class="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 hover:border-slate-600 transition-all">
+                <div
+                    class="flex items-center justify-between text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
+                    <span>Haber Mín. Jubilatorio</span>
+                    <i class="fa-solid fa-person-cane text-emerald-400"></i>
+                </div>
+                <div class="relative">
+                    <div class="kpi-valor text-2xl font-bold text-emerald-400 transition-opacity duration-300 opacity-0"
+                        id="kpi-jub-ultimo">$-</div>
+                    <div class="kpi-skeleton absolute inset-0 animate-pulse transition-opacity duration-300">
+                        <div class="h-7 w-32 rounded bg-slate-700/50"></div>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                    <span class="text-emerald-400 font-medium">ANSES</span> · haber mínimo garantizado
+                </p>
             </div>
         </div>
 

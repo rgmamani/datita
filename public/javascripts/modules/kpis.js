@@ -51,7 +51,7 @@ export function setKpisCargando(estado) {
   });
 }
 
-// Renderiza los 5 elementos KPI del panel superior (4 valores + año) con el primer y último registro de la serie
+// Renderiza los KPIs del panel superior (4 valores + año) con el primer y último registro de la serie
 export function renderKPIs() {
   if (economicData.length === 0) return;
 
@@ -85,5 +85,11 @@ export function renderKPIs() {
   const kpiCoberturaUltimo = document.getElementById('kpi-cobertura-ultimo');
   if (kpiCoberturaUltimo) {
     escribirConFade(kpiCoberturaUltimo, `${coberturaUltimo.toFixed(1).replace('.', ',')}%`);
+  }
+
+  // KPI 5 - Haber mínimo jubilatorio
+  const kpiJubUltimo = document.getElementById('kpi-jub-ultimo');
+  if (kpiJubUltimo) {
+    escribirConFade(kpiJubUltimo, ultimo.jubilacion !== undefined && ultimo.jubilacion !== null ? formatMoney(ultimo.jubilacion) : '—');
   }
 }
