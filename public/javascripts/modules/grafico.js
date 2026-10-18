@@ -16,7 +16,7 @@ function buildDataConfig() {
   });
   const jubValues = economicData.map(d => (d.jubilacion !== undefined && d.jubilacion !== null) ? d.jubilacion : null);
   const coberturaJubValues = economicData.map(d => {
-    if (d.jubilacion === undefined || d.jubilacion === null) return null;
+    if (d.jubilacion === undefined || d.jubilacion === null || !d.cbt) return null;
     return ((d.jubilacion / d.cbt) * 100).toFixed(1);
   });
 
