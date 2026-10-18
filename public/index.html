@@ -72,8 +72,13 @@
                     <span>SMVM Inicial (2000)</span>
                     <i class="fa-solid fa-dollar-sign text-blue-400"></i>
                 </div>
-                <div class="text-2xl font-bold text-white" id="kpi-smvm-inicial">$200 <span
-                        class="text-xs text-slate-400 font-normal">ARS</span></div>
+                <div class="relative">
+                    <div class="kpi-valor text-2xl font-bold text-white transition-opacity duration-300 opacity-0"
+                        id="kpi-smvm-inicial">$200 <span class="text-xs text-slate-400 font-normal">ARS</span></div>
+                    <div class="kpi-skeleton absolute inset-0 animate-pulse">
+                        <div class="h-7 w-28 rounded bg-slate-700/50"></div>
+                    </div>
+                </div>
                 <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
                     <span class="text-emerald-400 font-medium">1 a 1</span> durante la convertibilidad
                 </p>
@@ -87,8 +92,20 @@
                     <span>SMVM Último Año</span>
                     <i class="fa-solid fa-wallet text-emerald-400"></i>
                 </div>
-                <div class="text-2xl font-bold text-white" id="kpi-smvm-ultimo">$-</div>
-                <p class="text-xs text-slate-400 mt-2" id="kpi-smvm-ultimo-year">-</p>
+                <div class="relative">
+                    <div class="kpi-valor text-2xl font-bold text-white transition-opacity duration-300 opacity-0"
+                        id="kpi-smvm-ultimo">$-</div>
+                    <div class="kpi-skeleton absolute inset-0 animate-pulse">
+                        <div class="h-7 w-32 rounded bg-slate-700/50"></div>
+                    </div>
+                </div>
+                <div class="relative mt-2">
+                    <p class="kpi-valor text-xs text-slate-400 opacity-0 transition-opacity duration-300"
+                        id="kpi-smvm-ultimo-year">-</p>
+                    <div class="kpi-skeleton absolute inset-0 animate-pulse">
+                        <div class="h-3 w-16 rounded bg-slate-700/50"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- Stat 3 -->
@@ -99,7 +116,13 @@
                     <span>CBT Último Año</span>
                     <i class="fa-solid fa-basket-shopping text-rose-400"></i>
                 </div>
-                <div class="text-2xl font-bold text-white" id="kpi-cbt-ultimo">$-</div>
+                <div class="relative">
+                    <div class="kpi-valor text-2xl font-bold text-white transition-opacity duration-300 opacity-0"
+                        id="kpi-cbt-ultimo">$-</div>
+                    <div class="kpi-skeleton absolute inset-0 animate-pulse">
+                        <div class="h-7 w-32 rounded bg-slate-700/50"></div>
+                    </div>
+                </div>
                 <p class="text-xs text-slate-400 mt-2">Canasta Básica Total (Línea Pobreza)</p>
             </div>
 
@@ -111,7 +134,13 @@
                     <span>Cobertura Colectiva</span>
                     <i class="fa-solid fa-scale-unbalanced text-amber-400"></i>
                 </div>
-                <div class="text-2xl font-bold text-amber-400" id="kpi-cobertura-ultimo">-</div>
+                <div class="relative">
+                    <div class="kpi-valor text-2xl font-bold text-amber-400 transition-opacity duration-300 opacity-0"
+                        id="kpi-cobertura-ultimo">-</div>
+                    <div class="kpi-skeleton absolute inset-0 animate-pulse">
+                        <div class="h-7 w-24 rounded bg-slate-700/50"></div>
+                    </div>
+                </div>
                 <p class="text-xs text-slate-400 mt-2">% de CBT cubierta con 1 SMVM en último año</p>
             </div>
         </div>
