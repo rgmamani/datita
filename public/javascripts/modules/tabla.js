@@ -22,6 +22,7 @@ export function renderTable(filterText = '') {
       <td class="py-3 px-4 font-bold text-white">${item.year}</td>
       <td class="py-3 px-4 text-blue-400 font-medium">${formatMoney(item.smvm)}</td>
       <td class="py-3 px-4 text-rose-400 font-medium">${formatMoney(item.cbt)}</td>
+      <td class="py-3 px-4 text-emerald-400 font-medium">${item.jubilacion !== undefined && item.jubilacion !== null ? formatMoney(item.jubilacion) : '—'}</td>
       <td class="py-3 px-4">
         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold border ${badgeClass}">
           ${coverage}%
