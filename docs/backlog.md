@@ -10,7 +10,6 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 
 - [ ] **Contador de visitas + fecha del último dato** — soporte para mostrar "último dato publicado" y visitas diarias; dependiente de backend propio o Vercel Analytics.
 - [ ] **Vercel Web Analytics** — el proyecto ya lo trae habilitado por Vercel por defecto (ver webAnalytics en settings); decidir si sumarlo a la UI del footer.
-- [ ] **Visualización del haber mínimo jubilatorio en la UI** — la serie ANSES (`58.1_MP_0_M_13` vía datos.gob.ar) ya se consume en `/api/datos-economicos` pero no se muestra en el dashboard.
 - [ ] **PoC con LLM por indicador** (GitHub #5, #6, #7) — ideas exploratorias de la sesión semilla (marzo 2025); se mantienen abiertas como roadmap, ninguna iniciada.
 - [ ] **Autoría en el footer** (propuesta del dueño, 18/10) — agregar en el footer un enlace a la página personal http://rgmamani.github.io/ ("¿quién es el autor?"); definir texto discreto y ubicación junto a la línea de versión.
 - [ ] **Responsive de la página** (propuesta del dueño, 18/10) — revisar y ajustar el layout para mobile/tablet: KPIs, gráfico, tarjetas de periodos y tabla (scroll horizontal). Solapa parcialmente con el feature de jubilación (grid de 5).
@@ -18,6 +17,8 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 - [ ] **Reglas de protección de branch/releases en GitHub** (GitHub #10, label `operation`) — pendiente de decisión del dueño del repo.
 
 ## Resueltos (referencia rápida)
+
+- [x] **Jubilación en la UI (18/10, PR #15)** — haber mínimo ANSES en todo el dashboard (v2.1.0): datos curados 2000–2024 (`data/serie-historica.json` + fallback `datos.js`, script `scripts/generar-serie-jubilacion.mjs`), extensión en vivo 2025+ en `/api/serie-historica`, KPI 5 con skeleton/fade, 3ra línea/valor y línea punteada de cobertura en el gráfico, columna en la tabla. E2E en local y producción (27 registros, jubilación sep 2026 = $428.633) OK. Pulido post-review → PR #16.
 
 - [x] **Decisión Docker/Score (18/10)** — se eliminaron `Dockerfile`, `docker-build.sh`, `score.yaml` y `.dockerignore` + referencias en README, AGENTS.md y `.gitignore`. El deploy real es Vercel (push a main) y el local es `npm start`.
 
