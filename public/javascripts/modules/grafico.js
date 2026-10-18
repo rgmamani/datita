@@ -14,6 +14,11 @@ function buildDataConfig() {
     if (d.cobertura !== undefined) return d.cobertura.toFixed(1);
     return ((d.smvm / d.cbt) * 100).toFixed(1);
   });
+  const jubValues = economicData.map(d => (d.jubilacion !== undefined && d.jubilacion !== null) ? d.jubilacion : null);
+  const coberturaJubValues = economicData.map(d => {
+    if (d.jubilacion === undefined || d.jubilacion === null) return null;
+    return ((d.jubilacion / d.cbt) * 100).toFixed(1);
+  });
 
   const valuesDataConfig = {
     labels: labels,
@@ -39,6 +44,17 @@ function buildDataConfig() {
         tension: 0.3,
         pointRadius: 4,
         pointHoverRadius: 6
+      },
+      {
+        label: 'Haber Mínimo Jubilatorio (ANSES)',
+        data: jubValues,
+        borderColor: '#10b981',
+        backgroundColor: 'rgba(16, 185, 129, 0.08)',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+        pointHoverRadius: 6
       }
     ]
   };
@@ -55,6 +71,18 @@ function buildDataConfig() {
         fill: true,
         tension: 0.3,
         pointRadius: 4,
+        pointHoverRadius: 6
+      },
+      {
+        label: 'Haber Mín. (ANSES) / CBT',
+        data: coberturaJubValues,
+        borderColor: '#10b981',
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        borderDash: [6, 4],
+        fill: false,
+        tension: 0.3,
+        pointRadius: 3,
         pointHoverRadius: 6
       }
     ]
