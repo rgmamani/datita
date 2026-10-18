@@ -5,7 +5,7 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 ## Pendiente (confirmado)
 
 - [ ] **Pulido de UI: KPIs + UX** — estados de carga (skeleton loaders) en los KPIs mientras llegan los datos en vivo, transiciones suaves al re-renderizar tras `refreshData`.
-- [ ] **Pruebas E2E** — usar el MCP `chrome-devtools` de OpenCode para verificar la app en vivo: gráfico, toggles (escala log / modo cobertura), búsqueda de tabla, KPIs y footer. Pendiente señalar que el MCP falló al arrancar en su primera sesión — si vuelve a fallar, revisar su config.
+- [ ] **Pruebas E2E** — usar el MCP `chrome-devtools` de OpenCode para verificar la app en vivo: gráfico, toggles (escala log / modo cobertura), búsqueda de tabla, KPIs y footer. Nota: en la sesión del 18/10 falló el arranque, pero los logs de OpenCode muestran que conecta bien (32 tools) en sesiones nuevas de otros proyectos — el fallo era estado viejo de esta sesión. Tras reabrir opencode debería conectar; si no, inspeccionar ~/.local/share/opencode/log/opencode.log.
 - [ ] **Decisión: Docker/Score** — verificar si `Dockerfile`, `docker-build.sh` y `score.yaml` siguen teniendo sentido (el deploy real es Vercel; no se usan). Confirmar con el usuario si se conservan o se eliminan.
 
 ## Ideas (pendiente de confirmación)
