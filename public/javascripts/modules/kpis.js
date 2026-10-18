@@ -6,21 +6,31 @@ import { economicData, formatMoney } from './datos.js';
 const timersFades = new WeakMap();
 
 // Escribe html en el elemento. Si el valor está oculto (cargando) solo escribe: lo revela
-// el fade de setKpisCargando(false). Si está visible, escribe con fade y solo si cambió.
+// el fade de setKpisCargando(false). Si está visible, escribe con fade (dip de opacidad
+// de 150ms) y solo si cambió; un valor que llega durante el dip reemplaza al pendiente.
 function escribirConFade(el, html) {
   clearTimeout(timersFades.get(el));
   timersFades.delete(el);
   if (el.classList.contains('opacity-0')) {
     el.innerHTML = html;
+    // Si el elemento estaba oculto por un swap en curso (no por el estado de carga),
+    // restituir la visibilidad: el contenido nuevo gana.
+    if (el.dataset.kpiSwap) {
+      delete el.dataset.kpiSwap;
+      el.classList.remove('opacity-0');
+      el.classList.add('opacity-100');
+    }
     return;
   }
   if (el.innerHTML === html) return;
+  el.dataset.kpiSwap = '1';
   el.classList.add('opacity-0');
   el.classList.remove('opacity-100');
   timersFades.set(el, setTimeout(() => {
     el.innerHTML = html;
     el.classList.remove('opacity-0');
     el.classList.add('opacity-100');
+    delete el.dataset.kpiSwap;
     timersFades.delete(el);
   }, 150));
 }
@@ -29,6 +39,8 @@ function escribirConFade(el, html) {
 // (transition-opacity duration-300 en cada elemento).
 export function setKpisCargando(estado) {
   document.querySelectorAll('.kpi-valor').forEach(el => {
+    // No cancelar el fade de un swap en curso al revelar
+    if (!estado && el.dataset.kpiSwap) return;
     el.classList.toggle('opacity-100', !estado);
     el.classList.toggle('opacity-0', estado);
   });
