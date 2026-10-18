@@ -4,7 +4,7 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 
 ## Pendiente (confirmado)
 
-- [ ] **Decisión: Docker/Score** — verificar si `Dockerfile`, `docker-build.sh` y `score.yaml` siguen teniendo sentido (el deploy real es Vercel; no se usan). Confirmar con el usuario si se conservan o se eliminan.
+(nada — todo lo confirmado está resuelto)
 
 ## Ideas (pendiente de confirmación)
 
@@ -15,6 +15,8 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 - [ ] **Reglas de protección de branch/releases en GitHub** (GitHub #10, label `operation`) — pendiente de decisión del dueño del repo.
 
 ## Resueltos (referencia rápida)
+
+- [x] **Decisión Docker/Score (18/10)** — se eliminaron `Dockerfile`, `docker-build.sh`, `score.yaml` y `.dockerignore` + referencias en README, AGENTS.md y `.gitignore`. El deploy real es Vercel (push a main) y el local es `npm start`.
 
 - [x] **Pruebas E2E con chrome-devtools en producción (18/10)** — valida en vivo: KPIs estado final (5/5 visibles, skeletons apagados), gráfico y toggles (escala log, modo cobertura con ocultado del toggle log), búsqueda de tabla (filtra y des-filtra con eventos input reales), footer. **Bug encontrado y corregido**: `setKpisCargando(false)` cancelaba el fade de los swaps en re-llamadas a `refreshData` (el dip de opacidad moría en el mismo tick); fix `0dd8fb3` con marcador `dataset.kpiSwap` — verificado el ciclo fade-out/fade-in completo por muestreo de opacidad. Único warning en consola: el conocido del Tailwind Play CDN. El diagnóstico del fallo de arranque del MCP sigue vigente en el historial de commits (`f53592f`).
 - [x] Pulido de UI: KPIs + UX — skeleton loaders hasta llegar datos en vivo + fade en actualización (v2.0.0)
