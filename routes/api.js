@@ -164,14 +164,16 @@ async function construirSerieExtendida() {
         const anioBase = serieHistorica.length > 0 ? serieHistorica[serieHistorica.length - 1].year : 2016;
         const start = `${anioBase + 1}-01-01`;
 
-        const [smvmRows, cbtRows] = await Promise.all([
+        // Jubilación se pide aparte: si falla, la serie se extiende igual (sin haber)
+        const [smvmRows, cbtRows, jubRows] = await Promise.all([
             fetchSerieCompleta(SERIES_IDS.smvm, start),
-            fetchSerieCompleta(SERIES_IDS.cbt, start)
+            fetchSerieCompleta(SERIES_IDS.cbt, start),
+            fetchSerieCompleta(SERIES_IDS.jubilacion, start).catch(() => null)
         ]);
 
         if (smvmRows.length === 0 || cbtRows.length === 0) return base;
 
-        // Agrupar por año: último SMVM y última CBT de cada año
+        // Agrupar por año: último valor de cada serie en cada año
         const ultimoPorAnio = (rows) => {
             const mapa = {};
             for (const row of rows) {
@@ -182,6 +184,7 @@ async function construirSerieExtendida() {
         };
         const smvmPorAnio = ultimoPorAnio(smvmRows);
         const cbtPorAnio = ultimoPorAnio(cbtRows);
+        const jubPorAnio = jubRows && jubRows.length > 0 ? ultimoPorAnio(jubRows) : {};
 
         const aniosNuevos = Object.keys(smvmPorAnio)
             .map(Number)
@@ -196,13 +199,21 @@ async function construirSerieExtendida() {
             const mesSmvm = MESES_ES[parseInt(smvm.fecha.slice(5, 7), 10) - 1];
             const mesCbt = MESES_ES[parseInt(cbt.fecha.slice(5, 7), 10) - 1];
             const valorCbt = Math.round(cbt.valor);
-            base.push({
+            const jub = jubPorAnio[anio] || null;
+
+            const fila = {
                 year: anio,
                 smvm: Math.round(smvm.valor),
                 cbt: valorCbt,
                 note: `Datos oficiales en vivo: SMVM ${mesSmvm} ${anio}; CBT ${mesCbt} ${anio} (API datos.gob.ar).`,
                 cobertura: parseFloat(((smvm.valor / valorCbt) * 100).toFixed(1))
-            });
+            };
+            if (jub) {
+                fila.jubilacion = Math.round(jub.valor * 100) / 100;
+                const mesJub = MESES_ES[parseInt(jub.fecha.slice(5, 7), 10) - 1];
+                fila.note += ` Haber mín. jubilatorio ${mesJub} ${anio} (ANSES).`;
+            }
+            base.push(fila);
         }
         return base;
     } catch (error) {
