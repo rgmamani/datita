@@ -38,13 +38,13 @@ npx vercel --prod --yes            # deploy manual a producción (repo ya vincul
 
 ## Flujo de trabajo (feature branch + PR, con protección de branch)
 
-Desde el 18/10/2026 el flujo es feature branch + PR (merge commit). Desde el 19/10/2026 `main` tiene **branch protection estricta** (el repo es público, protección gratis): PR obligatorio para todos — **también para commits docs**, la excepción anterior quedó obsoleta. El dueño mergea sus propios PRs (0 aprobaciones requeridas); force-push y delete de `main` bloqueados; `enforce_admins: true`.
+Desde el 18/10/2026 el flujo es feature branch + PR (merge commit). Desde el 19/10/2026 `main` está protegido con un **ruleset de GitHub** (`Main protection`, el repo es público): PR obligatorio con 0 aprobaciones + **bypass para el dueño** (`User rgmamani`, modo `pull_request`) — el dueño mergea sus propios PRs pero el push directo a `main` sigue bloqueado hasta para admins; force-push y delete de `main` bloqueados. **También los commits docs van por PR** (la excepción anterior quedó obsoleta). Nota: la branch protection clásica no sirve en repo de un solo dev (exige 1 approving review que nadie puede dar, ni con count 0 — el merge lo desbloqueó el ruleset).
 
 1. crear branch `feat|fix|chore/<tema>` desde `main` actualizado, commitear ahí (atómicos estilo tren), **pushear el branch** y abrir PR con `gh pr create`;
 2. **no existe el push directo a `main`** (bloqueado por GitHub): el dueño revisa y mergea desde GitHub;
 3. cuando el dueño avisa que mergeó: actualizar `main`, verificar deploy READY + smoke checks (`/` 200, `/api/version`, `/api/serie-historica`), borrar el branch (local y remoto) y actualizar `docs/backlog.md` (que ahora también va por PR).
 - ⚠️ **Autor de commits**: Vercel bloquea deploys (`COMMIT_AUTHOR_REQUIRED`) si el email del commit no está asociado a la cuenta de GitHub del repo. Este repo usa `git config --local user.email rgmamani@gmail.com`; la config global (Globant) NO sirve acá. Los deploys pueden quedar en estado BLOCKED silenciosamente: chequear con `vercel ls` o `list_deployments`.
-- Sitio y repo 100% públicos (deployment protection desactivada; repo con licencia MIT y branch protection activa desde el 19/10/2026); la app no tiene secretos ni variables de entorno — mantenerlo así.
+- Sitio y repo 100% públicos (deployment protection desactivada; repo con licencia MIT y ruleset de protección en `main` desde el 19/10/2026); la app no tiene secretos ni variables de entorno — mantenerlo así.
 
 ## Convenciones
 
