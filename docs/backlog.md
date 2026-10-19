@@ -16,7 +16,7 @@ Criterio: inconsistencia visible hoy > valor para el visitante > costo de implem
 
 ## Resueltos (referencia rápida)
 
-- [x] **[P4] Protección de branch (19/10)** — repo pasado a público (protección gratis) + branch protection estricta en `main`: PR obligatorio (0 aprobaciones, el dueño mergea sus propios PRs), force-push y delete bloqueados, `enforce_admins: true`. Los commits docs ya no van directo a `main`.
+- [x] **[P4] Protección de branch (19/10)** — repo pasado a público (protección gratis) + **ruleset** `Main protection` en `main`: PR obligatorio (0 aprobaciones), force-push y delete bloqueados, y bypass `User` para el dueño en modo `pull_request` (mergea sus propios PRs sin review; el push directo a `main` queda bloqueado hasta para admins). Nota: la branch protection clásica es incompatible con repo de un solo dev (bloquea el self-merge aunque las aprobaciones requeridas sean 0).
 
 - [x] **Autoría en el footer (18/10, PR #19)** — "Visualización interactiva por Gabriel Mamani" con enlace a http://rgmamani.github.io/ en la primera línea del footer (estilo discreto, hover brand-blue).
 
