@@ -119,7 +119,7 @@ router.get("/datos-economicos", async (req, res) => {
 
 // Información de versión de la app (leída de package.json)
 const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8'));
-const FECHA_ACTUALIZACION_APP = '18/10/2026';
+const FECHA_ACTUALIZACION_APP = '19/10/2026';
 
 router.get('/version', (req, res) => {
     res.json({
