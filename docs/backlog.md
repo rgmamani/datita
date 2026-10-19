@@ -10,8 +10,7 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 
 Criterio: inconsistencia visible hoy > valor para el visitante > costo de implementación. El orden es una sugerencia del asistente; el dueño puede mover cosas libremente.
 
-- [ ] **[P5] Contador de visitas + fecha del último dato** — soporte para mostrar "último dato publicado" y visitas diarias; dependiente de backend propio o Vercel Analytics. Requiere decisión técnica antes. Costo: medio-alto.
-- [ ] **[P6] Vercel Web Analytics** — el proyecto ya lo trae habilitado por Vercel por defecto (ver webAnalytics en settings); decidir si sumarlo a la UI del footer. Va junto con P5 (misma área del footer).
+- [x] **[P5]/[P6] Fecha del último dato + Web Analytics (19/10)** — decisión técnica: **contador de visitas público descartado** (las opciones gratuitas de Vercel Hobby son insuficientes: Edge Config solo 100 escrituras/mes, Blob exige token y 2.000 writes/mes, terceros suman dependencia). En su lugar: **Vercel Web Analytics** (50.000 eventos/mes gratis, métricas solo en el dashboard — no en la UI) + **"Último dato publicado"** en el footer, calculado desde `/api/datos-economicos` (campos `salarioMinimoFecha` / `fechaDatoCbt` / `fechaDatoJubilacion`, que ya existían — cero cambios de backend). Requiere el click de "Enable" en Analytics (dashboard → datita-app → Analytics); mientras no esté habilitado, `/_vercel/insights/script.js` responde 404 sin impacto (solo warning de consola). v2.2.0.
 - [ ] **[P7] PoC con LLM por indicador** (GitHub #5, #6, #7) — ideas exploratorias de la sesión semilla (marzo 2025) sin adopción desde entonces. Candidatas a cerrar/archivar si no hay ganas de explorar (costo alto, valor incierto).
 
 ## Resueltos (referencia rápida)
