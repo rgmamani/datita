@@ -60,6 +60,35 @@ async function cargarVersion() {
   }
 }
 
+// Convierte '2026-10-15' en 'oct 2026' (usando la tabla de meses abreviados del backend)
+function formatoMesAnio(fecha) {
+  const MESES_ES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  const [anio, mes] = fecha.split('-');
+  return `${MESES_ES[parseInt(mes, 10) - 1]} ${anio}`;
+}
+
+// Muestra en el footer la fecha del último dato publicado por serie (fuente: /api/datos-economicos)
+async function cargarUltimoDato() {
+  try {
+    const response = await fetch('/api/datos-economicos');
+    const d = await response.json();
+    const el = document.getElementById('footer-ultimo-dato');
+    if (!el || !d) return;
+
+    const partes = [];
+    if (d.salarioMinimoFecha) partes.push(`SMVM ${formatoMesAnio(d.salarioMinimoFecha)}`);
+    if (d.fechaDatoCbt) partes.push(`CBT ${formatoMesAnio(d.fechaDatoCbt)}`);
+    if (d.fechaDatoJubilacion) partes.push(`haber mín. ${formatoMesAnio(d.fechaDatoJubilacion)}`);
+
+    if (partes.length > 0) {
+      el.textContent = `Último dato publicado: ${partes.join(' · ')}`;
+    }
+  } catch (error) {
+    // Sin fechas visibles: la línea del footer queda vacía
+    console.error('Error cargando último dato publicado:', error);
+  }
+}
+
 // Inicializa la app cuando el DOM está listo
 document.addEventListener('DOMContentLoaded', () => {
   renderKPIs();
@@ -69,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Carga datos reales del backend (serie histórica + años recientes del API oficial)
   EconomicData.refreshData();
   cargarVersion();
+  cargarUltimoDato();
 });
 
 // Export for potential API data integration
