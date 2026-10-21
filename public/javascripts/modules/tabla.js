@@ -1,14 +1,19 @@
 import { economicData, formatMoney } from './datos.js';
 
+// Orden de la tabla por año (true = ascendente 2000→2026). Sobrevive a las búsquedas.
+let ordenAscendente = true;
+
 // Renderiza la tabla histórica con filtro opcional por año o nota
 export function renderTable(filterText = '') {
   const tableBody = document.getElementById('tableBody');
   tableBody.innerHTML = '';
 
-  const filteredData = economicData.filter(item =>
-    item.year.toString().includes(filterText) ||
-    item.note.toLowerCase().includes(filterText.toLowerCase())
-  );
+  const filteredData = economicData
+    .filter(item =>
+      item.year.toString().includes(filterText) ||
+      item.note.toLowerCase().includes(filterText.toLowerCase())
+    )
+    .sort((a, b) => (ordenAscendente ? a.year - b.year : b.year - a.year));
 
   filteredData.forEach(item => {
     const coverage = ((item.smvm / item.cbt) * 100).toFixed(1);
@@ -32,4 +37,19 @@ export function renderTable(filterText = '') {
     `;
     tableBody.appendChild(row);
   });
+}
+
+// Invierte el orden por año, actualiza el indicador y re-renderiza con el filtro vigente
+export function toggleOrdenAnio() {
+  ordenAscendente = !ordenAscendente;
+
+  const icono = document.getElementById('iconoOrdenAnio');
+  if (icono) {
+    icono.classList.toggle('fa-arrow-up', ordenAscendente);
+    icono.classList.toggle('fa-arrow-down', !ordenAscendente);
+  }
+
+  // Re-renderiza respetando la búsqueda activa
+  const filtro = document.getElementById('searchInput')?.value ?? '';
+  renderTable(filtro);
 }
