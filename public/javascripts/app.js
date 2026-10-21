@@ -1,7 +1,7 @@
 // Entrada de la app: carga módulos, conecta eventos y sandbox de datos
 import { economicData, formatMoney } from './modules/datos.js';
 import { renderKPIs, setKpisCargando } from './modules/kpis.js';
-import { renderTable } from './modules/tabla.js';
+import { renderTable, toggleOrdenAnio } from './modules/tabla.js';
 import { initChart, rebuildChart, setMode, toggleLogScale } from './modules/grafico.js';
 
 // Conecta todos los event listeners de la página
@@ -9,6 +9,11 @@ function setupEventListeners() {
   // Search Input Event
   document.getElementById('searchInput').addEventListener('input', (e) => {
     renderTable(e.target.value);
+  });
+
+  // Sort by year (toggle asc/desc on table header)
+  document.getElementById('btnOrdenAnio').addEventListener('click', () => {
+    toggleOrdenAnio();
   });
 
   // Log Scale Toggle Button
