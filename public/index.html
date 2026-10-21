@@ -183,7 +183,8 @@
                 <div class="flex flex-wrap items-center gap-2">
                     <!-- Scale Toggle Button -->
                     <button id="btnLogScale"
-                        class="px-3 py-1.5 bg-slate-700/60 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-medium transition flex items-center gap-2 border border-slate-600">
+                        class="px-3 py-1.5 bg-slate-700/60 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-medium transition flex items-center gap-2 border border-slate-600"
+                        title="Comprime los valores grandes para que los primeros años no queden aplastados contra el piso. Ideal para comparar 2000 vs 2026.">
                         <i class="fa-solid fa-arrows-up-down"></i>
                         <span>Escala Logarítmica</span>
                     </button>
@@ -191,11 +192,13 @@
                     <!-- Chart Mode Selector -->
                     <div class="inline-flex p-1 bg-slate-900/80 rounded-lg border border-slate-700">
                         <button id="btnModeValues"
-                            class="px-3 py-1 rounded-md text-xs font-medium bg-brand-blue text-white shadow transition">
+                            class="px-3 py-1 rounded-md text-xs font-medium bg-brand-blue text-white shadow transition"
+                            title="Muestra los montos nominales en pesos de cada serie (SMVM, CBT y haber mínimo jubilatorio).">
                             Valores ($)
                         </button>
                         <button id="btnModeCoverage"
-                            class="px-3 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition">
+                            class="px-3 py-1 rounded-md text-xs font-medium text-slate-400 hover:text-white transition"
+                            title="Muestra qué porcentaje de la canasta básica cubre 1 sueldo mínimo cada año — la relación central del dashboard, independiente de la inflación.">
                             Cobertura (%)
                         </button>
                     </div>
