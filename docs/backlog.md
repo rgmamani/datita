@@ -6,11 +6,9 @@ Estado de tareas pendientes del proyecto. Mantener actualizado en cada sesión.
 
 (nada — todo lo confirmado está resuelto)
 
-## Ideas (con prioridad propuesta — 18/10/2026)
+## Descartados
 
-Criterio: inconsistencia visible hoy > valor para el visitante > costo de implementación. El orden es una sugerencia del asistente; el dueño puede mover cosas libremente.
-
-- [ ] **[P7] PoC con LLM por indicador** (GitHub #5, #6, #7) — ideas exploratorias de la sesión semilla (marzo 2025) sin adopción desde entonces. Candidatas a cerrar/archivar si no hay ganas de explorar (costo alto, valor incierto).
+- [x] **[P7] PoC con LLM por indicador (21/10)** — archivado sin desarrollar (GitHub #5, #6, #7, placeholders de marzo 2025 sin adopción en 19 meses). El problema original ("LLM como fuente de datos") quedó resuelto por la integración con la API oficial de datos.gob.ar (v2.0.0) + curación 2000–2024 en JSON. Descarte razonado: **(1)** un LLM en producción exigiría API key en el backend — el repo es 100% público sin secretos, convención explícita — y los LLM inventan valores, inaceptable para datos económicos oficiales; **(2)** como script de curación local sería viable, pero hoy no hace falta (las fuentes publican en formatos ya consumidos); **(3)** chat sobre los datos agrega costos y superficie de abuso en un site público sin auth. Revisitación posible: solo si la fuente oficial se rompe, y como script de curación con humano en el loop, nunca como fuente en vivo.
 
 ## Resueltos (referencia rápida)
 
