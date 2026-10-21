@@ -14,6 +14,8 @@ Criterio: inconsistencia visible hoy > valor para el visitante > costo de implem
 
 ## Resueltos (referencia rápida)
 
+- [x] **Orden por año en la tabla (21/10, PR #25)** — idea del dueño: click en el header "Año" alterna asc/desc (flecha indicadora, orden sobrevive a las búsquedas). Decisión de alcance: solo año (YAGNI — ordenar por valores nominales aporta poco; cobertura/otras columnas queda como posible iteración). Verificado con browser MCP en local y producción.
+
 - [x] **Bug header mobile (19/10, PR #24)** — en ~360px el título "DATITA - Economía Argentina" se apilaba y quedaba recortado por arriba (captura del dueño en `docs/screenshot-mobile.jpeg`). Causa raíz: altura fija `h-16` del header con contenido envuelto de ~90px. Fix: `min-h-16 py-2.5 sm:h-16 sm:py-0` — el header crece en mobile y queda idéntico en desktop. Bug preexistente: la auditoría responsive del PR #18 no cubrió el header.
 
 - [x] **[P5]/[P6] Fecha del último dato + Web Analytics (19/10, PR #22)** — decisión técnica: **contador de visitas público descartado** (las opciones gratuitas de Vercel Hobby son insuficientes: Edge Config solo 100 escrituras/mes, Blob exige token y 2.000 writes/mes, terceros suman dependencia). En su lugar: **Vercel Web Analytics** (50.000 eventos/mes gratis, métricas solo en el dashboard — no en la UI) + **"Último dato publicado"** en el footer, calculado desde `/api/datos-economicos` (campos `salarioMinimoFecha` / `fechaDatoCbt` / `fechaDatoJubilacion`, que ya existían — cero cambios de backend). Web Analytics habilitado y verificado en producción el mismo día (script `/_vercel/insights/script.js` → 200; requiere deploy posterior al click de "Enable"). v2.2.0.
